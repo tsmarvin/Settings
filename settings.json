@@ -1,0 +1,133 @@
+{
+    //Extensions:
+    // https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2
+    // https://marketplace.visualstudio.com/items?itemName=inu1255.easy-snippet
+    // https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
+    // https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow
+    // https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-pack
+    // https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell
+    // https://marketplace.visualstudio.com/items?itemName=LouisWT.regexp-preview
+    // https://marketplace.visualstudio.com/items?itemName=richie5um2.vscode-sort-json
+    "bracket-pair-colorizer-2.colors": [
+        "#ffff00",
+        "#ff8000",
+        "#ff0080",
+        "#ff00ff",
+        "#0000ff",
+        "#00ffff",
+        "#00ff00"
+    ],
+    "bracket-pair-colorizer-2.highlightActiveScope": true,
+    "bracket-pair-colorizer-2.rulerPosition": "Full",
+    "bracket-pair-colorizer-2.showBracketsInRuler": true,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "editor.fontSize": 16,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.insertSpaces": false,
+    "editor.largeFileOptimizations": false,
+    "editor.matchBrackets": "never", //Solves a conflict with bracket pair colorizer
+    "editor.maxTokenizationLineLength": 25000,
+    "editor.minimap.maxColumn": 50,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.renderFinalNewline": false,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [ 106 ],
+    "editor.semanticTokenColorCustomizations": {
+        "[Default Dark+]": {
+            "enabled": true,
+            "rules": {
+                "parameter": "#ffffffc1"
+            }
+        }
+    },
+    "editor.snippetSuggestions": "bottom",
+    "editor.tabCompletion": "on",
+    "explorer.confirmDragAndDrop": false,
+    "extensions.ignoreRecommendations": true,
+    "files.defaultLanguage": "powershell",
+    "files.hotExit": "onExitAndWindowClose",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.postCommitCommand": "push",
+    "indentRainbow.colors": [
+        "rgba(0, 255, 0, 0.08)",
+        "rgba(0, 255, 255, 0.08)",
+        "rgba(0, 0, 255, 0.08)",
+        "rgba(255, 0, 255, 0.08)",
+        "rgba(255, 0, 128, 0.18)",
+        "rgba(255, 128, 0, 0.18)",
+        "rgba(255, 255, 0, 0.08)"
+    ],
+    "liveshare.authenticationProvider": "GitHub",
+    "liveshare.presence": false,
+    "powershell.codeFormatting.alignPropertyValuePairs": true,
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    "powershell.codeFormatting.ignoreOneLineBlock": true,
+    "powershell.codeFormatting.newLineAfterCloseBrace": true,
+    "powershell.codeFormatting.pipelineIndentationStyle": "IncreaseIndentationForFirstPipeline",
+    "powershell.codeFormatting.preset": "OTBS",
+    "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
+    "powershell.codeFormatting.useConstantStrings": true,
+    "powershell.codeFormatting.useCorrectCasing": true,
+    "powershell.codeFormatting.whitespaceAfterSeparator": true,
+    "powershell.codeFormatting.whitespaceAroundOperator": true,
+    "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
+    "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
+    "powershell.codeFormatting.whitespaceBetweenParameters": true,
+    "powershell.powerShellDefaultVersion": "PowerShell (x64)",
+    "powershell.promptToUpdatePowerShell": false,
+    "security.workspace.trust.enabled": false,
+    "security.workspace.trust.startupPrompt": "never",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.defaultProfile.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -nologo",
+    "terminal.integrated.experimentalUseTitleEvent": true,
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.scrollback": 9999,
+    "terminal.integrated.tabs.enabled": true,
+    "update.enableWindowsBackgroundUpdates": false,
+    "window.zoomLevel": -1,
+    "workbench.activityBar.visible": true,
+    "workbench.colorCustomizations": {
+        "errorLens.errorBackground": "#e4545410",
+        "errorLens.errorForeground": "#ff646440",
+        "errorLens.errorMessageBackground": "#e4545405",
+        "errorLens.warningBackground": "#ff942f10",
+        "errorLens.warningForeground": "#fa973a70",
+        "errorLens.warningMessageBackground": "#fff00005",
+        "terminal.ansiBlack": "#000000",
+        "terminal.ansiBlue": "#2472c8",
+        "terminal.ansiBrightBlack": "#666666",
+        "terminal.ansiBrightBlue": "#569cd6",
+        "terminal.ansiBrightCyan": "#9cdcfe",
+        "terminal.ansiBrightGreen": "#b5cea8",
+        "terminal.ansiBrightMagenta": "#daadd6",
+        "terminal.ansiBrightRed": "#f14c4c",
+        "terminal.ansiBrightWhite": "#e5e5e5",
+        "terminal.ansiBrightYellow": "#DCDCAA",
+        "terminal.ansiCyan": "#11a8cd",
+        "terminal.ansiGreen": "#6a9955",
+        "terminal.ansiMagenta": "#C586C0",
+        "terminal.ansiRed": "#cd3131",
+        "terminal.ansiWhite": "#e5e5e5",
+        "terminal.ansiYellow": "#CE9178",
+        "terminal.background": "#1E1E1E",
+        "terminal.foreground": "#D4D4D4"
+    },
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.editor.decorations.badges": true,
+    "workbench.editor.decorations.colors": true,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.scrollToSwitchTabs": true,
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.wrapTabs": true,
+    "workbench.sideBar.location": "left",
+    "workbench.startupEditor": "newUntitledFile"
+}
