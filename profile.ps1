@@ -81,3 +81,14 @@ Function Set-WindowTitle {
 	}
 	End {}
 }
+
+Function Set-GitSettings {
+	ssh-agent -k | Out-Null
+	$Output = (ssh-agent -s)
+
+	$Env:SSH_AUTH_SOCK = $Output[0].Split('=')[1].split(';')[0]
+	$Env:SSH_AGENT_PID = $Output[1].Split('=')[1].split(';')[0]
+	$Env:GPG_TTY = tty
+
+	ssh-add ~/.ssh/id_ed25519
+}
