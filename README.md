@@ -1,7 +1,8 @@
 # Settings
 
 ```
-The VSCode settings.json file usually lives: %appdata%\Code\User\settings.json
+The VSCode_settings.json file usually lives: %appdata%\Code\User\settings.json
+The WindowsTerminal_settings.json file currently lives: %localappdata%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 ```
 
 <br>
