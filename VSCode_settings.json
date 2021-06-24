@@ -16,13 +16,7 @@
     // https://marketplace.visualstudio.com/items?itemName=rust-lang.rust
     // https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
     "bracket-pair-colorizer-2.colors": [
-        "#ffff00",
-        "#ff8000",
-        "#ff0080",
-        "#ff00ff",
-        "#0000ff",
-        "#00ffff",
-        "#00ff00"
+        "#ffff00", "#ff8000", "#ff0080", "#ff00ff", "#0000ff", "#00ffff", "#00ff00"
     ],
     "bracket-pair-colorizer-2.highlightActiveScope": true,
     "bracket-pair-colorizer-2.rulerPosition": "Full",
@@ -104,6 +98,7 @@
     "terminal.integrated.tabs.location": "left",
     "terminal.integrated.titleMode": "executable",
     "update.enableWindowsBackgroundUpdates": false,
+    "window.restoreWindows": "preserve",
     "window.zoomLevel": -1,
     "workbench.activityBar.visible": true,
     "workbench.colorCustomizations": {
@@ -139,6 +134,6 @@
     "workbench.editor.scrollToSwitchTabs": true,
     "workbench.editor.tabSizing": "shrink",
     "workbench.editor.wrapTabs": true,
-    "workbench.sideBar.location": "left",
+    "workbench.sideBar.location": "right",
     "workbench.startupEditor": "newUntitledFile"
 }
