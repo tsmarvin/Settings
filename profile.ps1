@@ -25,14 +25,14 @@ Function Prompt {
 			Write-Host $pwd.Provider.Name -NoNewline -ForegroundColor Green
 			Write-Host '] ' -NoNewline -ForegroundColor White
 		}
-		if ($CurrentPath.Split("$PathSep").count -lt 4) {
-			$OutputPath = "$CurrentPath>"
+		$OutputPath = if ($CurrentPath.Split("$PathSep").count -lt 4) {
+			"$CurrentPath>"
+		} elseif ($CurrentPath.StartsWith('\\') -and ($CurrentPath.Split('\').count -ge 6)) {
+			$PathSplit = $CurrentPath.Split('\')
+			"\\$($PathSplit[2])\...\$($PathSplit[-2])\$($PathSplit[-1])>"
 		} else {
-			if (($CurrentPath.StartsWith('\\')) -and (($CurrentPath.Split('\')).count -ge 6)) {
-				$OutputPath = ("\\$($CurrentPath.Split('\')[2])\...\$($CurrentPath.Split('\')[-2])\$($CurrentPath.Split('\')[-1])>")
-			} else {
-				$OutputPath = "$($CurrentPath.Split("$PathSep")[0])$PathSep...$PathSep$($CurrentPath.Split("$PathSep")[-2])$PathSep$($CurrentPath.Split("$PathSep")[-1])>"
-			}
+			$PathSplit = $CurrentPath.Split($PathSep)
+			"$($PathSplit[0])$PathSep...$PathSep$($PathSplit[-2])$PathSep$($PathSplit[-1])>"
 		}
 	}
 
@@ -65,30 +65,63 @@ Function Set-WindowTitle {
 		$WindowTitle += Switch ($PSVersionTable.PSEdition) {
 			'Core' { 'PWSH' }
 			'Desktop' { 'PS' }
-			Default {}
 		}
 
 		# Add PSVersion number and current provider to WindowTitle
-		$WindowTitle += " v$($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor).$($PSVersionTable.PSVersion.Patch)" # Done this way for win PS compat.
+		$PSVersion = $PSVersionTable.PSVersion
+		$WindowTitle += " v$($PSVersion.Major).$($PSVersion.Minor).$($PSVersion.Patch)"
 		$WindowTitle += " [$($pwd.Provider.Name)]"
-
-		# Update window title
-		Try {
-			$Host.Ui.RawUi.WindowTitle = "$WindowTitle"
-		} Catch {
-			# Do Nothing.
-		}
 	}
-	End {}
+
+	End {
+		Try {
+			# Attempt to update window title
+			$Host.Ui.RawUi.WindowTitle = "$WindowTitle"
+		} Catch {}
+	}
 }
 
 Function Set-GitSettings {
-	ssh-agent -k | Out-Null
-	$Output = (ssh-agent -s)
+	[CmdletBinding()]
+	param ()
 
-	$Env:SSH_AUTH_SOCK = $Output[0].Split('=')[1].split(';')[0]
-	$Env:SSH_AGENT_PID = $Output[1].Split('=')[1].split(';')[0]
-	$Env:GPG_TTY = tty
+	begin {
+		$GithubSSHKeyDefault = '~/.ssh/id_ed25519'
+		Try { ssh-agent -k | Out-Null } Catch {}
+	}
 
-	ssh-add ~/.ssh/id_ed25519
+	process {
+		$Output = (ssh-agent -s)
+		$Env:SSH_AUTH_SOCK = $Output[0].Split('=')[1].split(';')[0]
+		$Env:SSH_AGENT_PID = $Output[1].Split('=')[1].split(';')[0]
+		$Env:GPG_TTY = tty
+
+		$SSH = if (Test-Path $GithubSSHKeyDefault -PathType Leaf) {
+			$GithubSSHKeyDefault
+		} else {
+			$Keys = Get-ChildItem -Path '~/.ssh/' -File | Where-Object {
+				($_.Extension -ine '.pub') -and
+				($_.name -ine 'known_hosts')
+			}
+			if ($Keys) {
+				$Index = 0
+				$KeyList = Foreach ($Key in $Keys) {
+					[PSCustomObject]@{
+						Number = $Index
+						Path   = $Key.FullName
+					}
+					++$Index
+				}
+				$PromptAnswer = Read-Host -Prompt (
+					"Enter the number corresponding to the ssh key to use.`n" +
+					($KeyList | Format-Table | Out-String)
+				)
+				$Keys[$PromptAnswer].FullName
+			} else {
+				$PSCmdlet.WriteError('No SSH Keys found.')
+			}
+		}
+	}
+
+	end { ssh-add $SSH }
 }
