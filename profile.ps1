@@ -9,7 +9,12 @@ Function Prompt {
 			Set-WindowTitle
 			$env:SetWindowTitle = $true
 		}
-		$CurrentPath = $executionContext.SessionState.Path.CurrentLocation.Path
+		$ProviderPath = (Get-Location).ProviderPath
+		$CurrentPath = if ($ProviderPath -match '\\\\') {
+			$executionContext.SessionState.Path.CurrentLocation.Path
+		} else {
+			$ProviderPath
+		}
 
 		if ($env:AdminContext) {
 			# Add admin to command prompt
