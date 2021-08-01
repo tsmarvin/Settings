@@ -1,34 +1,6 @@
-# Settings
-1. The VSCode_settings.json file usually lives:
-	- Windows Default: `%appdata%\Code\User\settings.json`
-	- Portable: `{PortableVSCodeRoot}\data\user-data\User\settings.json`
-2. The VSCode_keybindings.json file usually lives:
-	- Windows Default: `%appdata%\Code\User\keybindings.json`
-	- Portable: `{PortableVSCodeRoot}\data\user-data\User\keybindings.json`
-3. My WindowsTerminal_settings.json file currently lives:
-	- `%localappdata%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`
-
-<br>
-
-# Profile
-- Profile Paths:
-```
-Terminal Profile:
-  $PROFILE.CurrentUserAllHosts
-  $PROFILE.CurrentUserCurrentHost
-  $PROFILE.AllUsersCurrentHost
-  $PROFILE.AllUsersAllHosts
-
-VSCode:
-  ~/.config/powershell/Microsoft.VSCode_profile.ps1
-```
-
-- Dynamically find which profile paths exist:
-```
-$Profiles = @($PROFILE
-	| Get-Member -MemberType NoteProperty
-	| Select-Object -ExpandProperty Name
-	| ForEach-Object { $Profile.$_ }
-), '~/.config/powershell/Microsoft.VSCode_profile.ps1'
-Foreach ($Path in $Profiles) { Get-Item $Path -ErrorAction Ignore }
-```
+# Gists -
+- I have moved the content from this repo to my gists instead.
+	- https://gist.github.com/tsmarvin
+	- Powershell Profile: https://gist.github.com/tsmarvin/3ec5df59e030886a9f81a693ba01f785
+	- VSCode Settings: https://gist.github.com/tsmarvin/4eb499be38bcd62fe8c33b7827b21b19
+	- Windows Terminal Settings: https://gist.github.com/tsmarvin/8adc1227162c90c1e7a74768e99b8046
